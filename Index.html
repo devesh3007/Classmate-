@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClassMate</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6fb;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:25px 20px;
+    border-radius:0 0 25px 25px;
+}
+
+header h1{
+    font-size:30px;
+}
+
+header p{
+    margin-top:7px;
+    opacity:.9;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.welcome{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.07);
+}
+
+.welcome h2{
+    margin-bottom:8px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.07);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.icon{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    margin-bottom:7px;
+}
+
+.section{
+    display:none;
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-top:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.07);
+}
+
+.section.active{
+    display:block;
+}
+
+.section h2{
+    margin-bottom:15px;
+    color:#4f46e5;
+}
+
+.item{
+    padding:15px;
+    border:1px solid #eee;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.item strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.back{
+    border:none;
+    background:#4f46e5;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+    margin-bottom:15px;
+    cursor:pointer;
+}
+
+.progress{
+    background:#eee;
+    height:12px;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-bar{
+    width:78%;
+    height:100%;
+    background:#4f46e5;
+}
+
+input,textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    margin:8px 0;
+}
+
+button.submit{
+    background:#4f46e5;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#777;
+}
+
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    header h1{
+        font-size:25px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .icon{
+        font-size:27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 ClassMate</h1>
+    <p>Your Complete Class Management App</p>
+</header>
+
+<div class="container">
+
+<div class="welcome">
+    <h2>Welcome, Student 👋</h2>
+    <p>Everything you need for your class — in one place.</p>
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="showSection('notice')">
+    <div class="icon">📢</div>
+    <h3>Notice Board</h3>
+    <p>Important class announcements</p>
+</div>
+
+<div class="card" onclick="showSection('notes')">
+    <div class="icon">📚</div>
+    <h3>Notes</h3>
+    <p>Subject-wise study notes</p>
+</div>
+
+<div class="card" onclick="showSection('assignment')">
+    <div class="icon">📝</div>
+    <h3>Assignments</h3>
+    <p>Track your assignments</p>
+</div>
+
+<div class="card" onclick="showSection('timetable')">
+    <div class="icon">🗓️</div>
+    <h3>Timetable</h3>
+    <p>Today's class schedule</p>
+</div>
+
+<div class="card" onclick="showSection('attendance')">
+    <div class="icon">📊</div>
+    <h3>Attendance</h3>
+    <p>Check your attendance</p>
+</div>
+
+<div class="card" onclick="showSection('exam')">
+    <div class="icon">📅</div>
+    <h3>Exam Schedule</h3>
+    <p>Upcoming examinations</p>
+</div>
+
+<div class="card" onclick="showSection('doubt')">
+    <div class="icon">❓</div>
+    <h3>Doubt Section</h3>
+    <p>Ask your study doubts</p>
+</div>
+
+<div class="card" onclick="showSection('missed')">
+    <div class="icon">🎒</div>
+    <h3>Missed Class?</h3>
+    <p>Get missed class information</p>
+</div>
+
+</div>
+
+
+<!-- NOTICE -->
+
+<div id="notice" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>📢 Notice Board</h2>
+
+<div class="item">
+<strong>Hackathon Registration</strong>
+Registration for the college hackathon is open.
+</div>
+
+<div class="item">
+<strong>Internal Exam</strong>
+Internal examinations will start next Monday.
+</div>
+
+<div class="item">
+<strong>Holiday Notice</strong>
+College will remain closed on Sunday.
+</div>
+</div>
+
+
+<!-- NOTES -->
+
+<div id="notes" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>📚 Study Notes</h2>
+
+<div class="item">
+<strong>Computer Science</strong>
+Number System, Binary Conversion and Computer Basics
+</div>
+
+<div class="item">
+<strong>Mathematics</strong>
+Matrices, Determinants and Probability
+</div>
+
+<div class="item">
+<strong>English</strong>
+Grammar and Communication Skills
+</div>
+
+<div class="item">
+<strong>Accounts</strong>
+Journal, Ledger and Trial Balance
+</div>
+</div>
+
+
+<!-- ASSIGNMENT -->
+
+<div id="assignment" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>📝 Assignments</h2>
+
+<div class="item">
+<strong>Computer Assignment</strong>
+Submit: 15 September
+</div>
+
+<div class="item">
+<strong>Mathematics Assignment</strong>
+Submit: 18 September
+</div>
+
+<div class="item">
+<strong>English Project</strong>
+Submit: 20 September
+</div>
+</div>
+
+
+<!-- TIMETABLE -->
+
+<div id="timetable" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>🗓️ Today's Timetable</h2>
+
+<div class="item"><strong>09:00 AM</strong> Mathematics</div>
+<div class="item"><strong>10:00 AM</strong> Computer Science</div>
+<div class="item"><strong>11:00 AM</strong> English</div>
+<div class="item"><strong>12:00 PM</strong> Accounts</div>
+<div class="item"><strong>01:00 PM</strong> Lunch Break</div>
+</div>
+
+
+<!-- ATTENDANCE -->
+
+<div id="attendance" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>📊 Attendance</h2>
+
+<p><strong>Overall Attendance: 78%</strong></p>
+
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+
+<br>
+
+<div class="item">
+<strong>Mathematics</strong>
+85%
+</div>
+
+<div class="item">
+<strong>Computer Science</strong>
+80%
+</div>
+
+<div class="item">
+<strong>English</strong>
+72%
+</div>
+
+</div>
+
+
+<!-- EXAM -->
+
+<div id="exam" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>📅 Exam Schedule</h2>
+
+<div class="item">
+<strong>20 September</strong>
+Mathematics
+</div>
+
+<div class="item">
+<strong>22 September</strong>
+Computer Science
+</div>
+
+<div class="item">
+<strong>24 September</strong>
+English
+</div>
+
+<div class="item">
+<strong>26 September</strong>
+Accounts
+</div>
+</div>
+
+
+<!-- DOUBT -->
+
+<div id="doubt" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>❓ Ask Your Doubt</h2>
+
+<p>Enter your question below:</p>
+
+<textarea id="doubtText" rows="5"
+placeholder="Write your doubt here..."></textarea>
+
+<button class="submit" onclick="submitDoubt()">
+Submit Doubt
+</button>
+
+<p id="doubtMessage"></p>
+</div>
+
+
+<!-- MISSED CLASS -->
+
+<div id="missed" class="section">
+<button class="back" onclick="goHome()">← Back</button>
+<h2>🎒 Missed Class?</h2>
+
+<div class="item">
+<strong>Today's Missed Class</strong>
+Computer Science
+</div>
+
+<div class="item">
+<strong>Topic Covered</strong>
+Introduction to Number Systems
+</div>
+
+<div class="item">
+<strong>Assignment</strong>
+Practice Binary Conversion Questions
+</div>
+
+<div class="item">
+<strong>Notes</strong>
+Notes are available in the Notes section.
+</div>
+
+</div>
+
+</div>
+
+<footer>
+    © 2026 ClassMate | Made for Students 🚀
+</footer>
+
+
+<script>
+
+function showSection(id){
+
+    document.querySelectorAll('.section')
+    .forEach(section=>{
+        section.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+}
+
+function goHome(){
+
+    document.querySelectorAll('.section')
+    .forEach(section=>{
+        section.classList.remove('active');
+    });
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+}
+
+function submitDoubt(){
+
+    let text=document.getElementById("doubtText").value;
+
+    if(text.trim()==""){
+        alert("Please enter your doubt first.");
+        return;
+    }
+
+    document.getElementById("doubtMessage").innerHTML=
+    "✅ Your doubt has been submitted successfully!";
+
+    document.getElementById("doubtText").value="";
+}
+
+</script>
+
+</body>
+</html>
